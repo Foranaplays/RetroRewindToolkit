@@ -1,6 +1,8 @@
 # RetroRewindToolkit
 
-Source code and build instructions for **Retro Rewind Toolkit v0.13 RC**, an offline save editor for **Retro Rewind - Video Store Simulator**.
+Source code and build instructions for **Retro Rewind Toolkit v0.13**, an offline save editor for **Retro Rewind - Video Store Simulator**.
+
+The current Windows release is developed in **C# using .NET 8 and Windows Forms**.
 
 The tool is designed to modify specific progression values stored in the game's local `.sav` files.
 
@@ -11,7 +13,13 @@ The tool is designed to modify specific progression values stored in the game's 
 - Change the store level after level 1 has been reached naturally.
 - Automatic backup creation before modifying a save.
 - Automatic detection of Retro Rewind save files.
-- Multi-language interface.
+- Multi-language interface:
+  - English
+  - Español
+  - Français
+  - Deutsch
+  - Italiano
+  - Português
 - No administrator privileges required.
 - Works completely offline.
 
@@ -25,60 +33,87 @@ Some values are not present in a newly created save until the game has initializ
 - **Money:** the player must purchase something and save the game at least once before the money value can be edited.
 - **Store Level:** the save must reach **level 1 naturally** before the level can be edited.
 
-The application creates a backup before modifying the original save.
+The application creates an automatic backup before modifying the original save.
 
-## Source code
+## Current Windows source code
 
-The complete Python source code used for this release is included in this repository:
+The source code for the current Windows release is included in this repository.
 
-`RetroRewindToolkit_v0.13_RC_FINAL.py`
+Main files:
 
-The Python version can be run directly with **Python 3.8+**.
+- `Program.cs` — application entry point.
+- `MainForm.cs` — Windows Forms user interface.
+- `SaveOps.cs` — save detection, reading, validation, backup and modification operations.
+- `Translations.cs` — interface translations.
+- `RetroRewindToolkit.csproj` — .NET 8 project and Windows build configuration.
+- `RetroRewindToolkit.ico` — application icon.
+- `BUILD_FINAL_SINGLE_FILE_WINDOWS.bat` — reproducible Windows build script.
 
-The graphical interface uses **Tkinter**.
+The application targets:
 
-## Building the Windows version
+- **C# / .NET 8**
+- **Windows Forms**
+- **Windows x64**
+- **Single-file publication**
+- **Framework-dependent deployment**
 
-The Windows executable is built from the same Python source code available in this repository.
+## Building the current Windows version
 
-Install Python 3.8 or newer and PyInstaller:
+### Requirements
 
-```bash
-pip install pyinstaller
-```
+Install the **.NET 8 SDK**.
 
-From the directory containing the source file, build the application with:
+From the repository directory, run:
 
-```bash
-pyinstaller --noconfirm --onedir --windowed --name RetroRewindToolkit RetroRewindToolkit_v0.13_RC_FINAL.py
-```
+`BUILD_FINAL_SINGLE_FILE_WINDOWS.bat`
 
-PyInstaller will create the Windows build inside:
+Or build manually with:
 
-```text
-dist/RetroRewindToolkit/
-```
+`dotnet publish RetroRewindToolkit.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -p:DebugType=None -p:DebugSymbols=false -o Release`
 
-The resulting folder contains:
+The final application is generated as:
 
-```text
-RetroRewindToolkit.exe
-_internal/
-```
+`Release/RetroRewindToolkit.exe`
 
-Both the executable and the `_internal` folder are required for the Windows version to run.
+No installer is required.
 
-No installer is used.
+Because this is a framework-dependent build, the target computer requires the **.NET 8 Desktop Runtime**.
 
 ## Security and transparency
 
-Retro Rewind Toolkit only operates on local Retro Rewind save files selected or detected on the user's computer.
+Retro Rewind Toolkit works entirely offline.
 
-The source code is publicly available in this repository so that users and platform moderators can inspect the application's behavior and reproduce the Windows build.
+It does not connect to the Internet and does not require administrator privileges.
 
-The source `.py` file has also been checked with VirusTotal with no security vendors flagging it as malicious.
+The application only operates on local Retro Rewind save files and creates a backup before writing changes.
 
-Because the Windows executable is packaged with PyInstaller and modifies binary game save files, some antivirus heuristic engines may classify the compiled executable as suspicious. The source code and build instructions are provided here for transparency and independent verification.
+The complete source code for the current Windows release is publicly available in this repository so that users and platform moderators can inspect the application's behavior and reproduce the Windows build independently.
+
+The current Windows executable was built directly with the official .NET SDK using the build process documented above.
+
+### VirusTotal
+
+The current Windows executable has been analyzed by VirusTotal with **0 security vendors flagging the file as malicious**.
+
+SHA-256:
+
+`6617e4255b3e96126b1284758231e9558286e58e816d706af8421178406c1d58`
+
+VirusTotal report:
+
+https://www.virustotal.com/gui/file/6617e4255b3e96126b1284758231e9558286e58e816d706af8421178406c1d58/detection
+
+## Previous Python implementation
+
+The repository also contains:
+
+`RetroRewindToolkit_v0.13_RC_FINAL.py`
+
+This is the **previous Python implementation** of Retro Rewind Toolkit and is retained for historical reference and transparency.
+
+It is **not the source used to build the current C#/.NET Windows executable**.
+
+The current Windows release should be built from the `.cs` source files and `RetroRewindToolkit.csproj` using the .NET 8 build instructions above.
 
 ## Backups
 
