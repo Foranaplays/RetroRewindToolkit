@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>RetroRewindToolkit</AssemblyName>
+    <RootNamespace>RetroRewindToolkit</RootNamespace>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <Version>0.13.0</Version>
+    <FileVersion>0.13.0.0</FileVersion>
+    <AssemblyVersion>0.13.0.0</AssemblyVersion>
+    <Product>Retro Rewind Toolkit</Product>
+    <Description>Offline save editor for Retro Rewind - Video Store Simulator</Description>
+    <Company>Foranaplays</Company>
+    <ApplicationIcon>RetroRewindToolkit.ico</ApplicationIcon>
+  </PropertyGroup>
+</Project>
